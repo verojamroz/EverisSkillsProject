@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="shortcut icon" href="~/Content/images/favicon142.ico" type="image/x-icon" />
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+   
+        <div class="row">
+            <div class="col-md-9" >
+                <img src="~/Content/images/logo_everis.png"  />
+                <strong>
+                    <font color="#808080" size="2" face="Avenir 55">Consulting, IT &amp; Outsourcing Professional Services</font>
+                </strong>
+            </div>
+            <div class="col-md-3">
+                @if (Request.IsAuthenticated)
+                {
+                    <div>
+                        User: <strong>@Html.Encode(User.Identity.Name)</strong>
+                    </div>
+                    <label>(</label>@Html.ActionLink("Sign Out", "Logout", "Home")<label>)</label>
+                }
+            </div>
+           
+        </div>
+         <hr>
+    <div class="Row"></div>
+    <div class="Row">
+        
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div>
+              
+                @RenderBody()
+              
+            </div>
+            
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+        
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function () {
+        $('*[data-confirmprompt]').click(function (event) {
+            var promptText = $(this).attr('data-confirmprompt');
+            if (!confirm(promptText)) {
+                event.preventDefault();
+            }
+        });
+
+        var showNot = '@ViewBag.ShowNotification';
+        if (showNot == 'True') {
+            new PNotify({
+                title: 'Skills',
+                text: 'Los cambios han sido realizados con éxito.',
+                type: 'success',
+                icon: 'picon picon-flag-green'
+            });
+        }
+
+    });
+</script>

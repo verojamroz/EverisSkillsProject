@@ -1,0 +1,73 @@
+﻿@model Portal.Models.AdminModel
+@{
+    ViewBag.Title = "Actualizar Empleado";
+}
+<fieldset>
+    <legend>Actualizar Empleado</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.Employee.Id)
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Employee.FirstName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Employee.FirstName, new { @class = "form-control", placeholder = "Nombre" })
+                        @Html.ValidationMessageFor(model => model.Employee.FirstName)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Employee.LastName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Employee.LastName, new { @class = "form-control", placeholder = "Apellido" })
+                        @Html.ValidationMessageFor(model => model.Employee.LastName)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Employee.Phone)
+                    </div>
+                
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Employee.Phone, new { @class = "form-control", placeholder = "Teléfono" })
+                        @Html.ValidationMessageFor(model => model.Employee.Phone)
+                    </div>
+                </div>
+                 <div class="col-md-4">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Employee.Email)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Employee.Email, new { @class = "form-control", placeholder = "Email" })
+                        @Html.ValidationMessageFor(model => model.Employee.Email)
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Employee.DNI)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Employee.DNI, new { @class = "form-control", placeholder = "DNI" })
+                        @Html.ValidationMessageFor(model => model.Employee.DNI)
+                    </div>
+                </div>
+            </div>
+            <div>
+                @Html.ValidationSummary(true)
+            </div>
+                <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="submit" value="Actualizar" class="btn btn-primary"/>
+                    @Html.ActionLink("Cancelar", "List", "Employee", new { @class = "btn btn-default" })
+                </div>
+            </div>
+
+    }
+</fieldset>

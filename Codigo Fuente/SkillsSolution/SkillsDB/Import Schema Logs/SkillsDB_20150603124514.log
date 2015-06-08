@@ -1,0 +1,14 @@
+02/06/2015 09:45:14 p.m.	This log contains information about the import schema operation into project 'SkillsDB' on computer 'KZ-PC' by user 'Pablo'.
+02/06/2015 09:45:14 p.m.	Creating database project...
+02/06/2015 09:45:15 p.m.	Done
+02/06/2015 09:45:27 p.m.	The import database schema operation was canceled.
+02/06/2015 09:45:27 p.m.	A summary of the import operation was saved to the log file D:\Works\Development\Veronica\20150602_SkillsSolution\SkillsSolution\SkillsDB\Import Schema Logs\SkillsDB_20150603124514.log.
+02/06/2015 09:45:27 p.m.	Click Finish to continue...
+02/06/2015 09:45:27 p.m.	Import of database schema has started.
+02/06/2015 09:45:27 p.m.	The current project settings do not support the database that you selected to import. You have attempted the following combination:
+
+Database project version: 90
+SQL Server version: 100
+
+For a SQL 2005 project: Import SQL Server 2005 databases.
+For a SQL 2008 project: Import SQL Server 2005, or 2008 databases.

@@ -1,0 +1,101 @@
+﻿@model Portal.Models.AdminModel
+@{
+    ViewBag.Title = "Nuevo Empleado";
+}
+<fieldset>
+    <legend>Nuevo Empleado</legend>
+    @using (Html.BeginForm())
+    {
+        
+        <div>
+            @Html.ValidationSummary(true)
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Employee.FirstName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Employee.FirstName, new { @class = "form-control", placeholder = "Nombre" })
+                    @Html.ValidationMessageFor(model => model.Employee.FirstName)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Employee.LastName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Employee.LastName, new { @class = "form-control", placeholder = " Apellido" })
+                    @Html.ValidationMessageFor(model => model.Employee.LastName)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Employee.Phone)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Employee.Phone, new { @class = "form-control", placeholder = " Telefono" })
+                    @Html.ValidationMessageFor(model => model.Employee.Phone)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Employee.Email)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Employee.Email, new { @class = "form-control", placeholder = "Email" })
+                    @Html.ValidationMessageFor(model => model.Employee.Email)
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Employee.DNI)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Employee.DNI, new { @class = " form-control", placeholder = "DNI" })
+                    @Html.ValidationMessageFor(model => model.Employee.DNI)
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Employee.User.UserName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Employee.User.UserName, new { @class = "form-control", placeholder = "Nombre de usuario" })
+                    @Html.ValidationMessageFor(model => model.Employee.User.UserName)
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Employee.User.Password)
+                </div>
+                <div class="editor-field">
+                    @Html.PasswordFor(model => model.Employee.User.Password, new { @class = "form-control", placeholder = "Password" })
+                    @Html.ValidationMessageFor(model => model.Employee.User.Password)
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Employee.User.RetypePassword)
+                </div>
+                <div class="editor-field">
+                    @Html.PasswordFor(model => model.Employee.User.RetypePassword, new { @class = "form-control", placeholder = "Repetir Password" })
+                    @Html.ValidationMessageFor(model => model.Employee.User.RetypePassword)
+                    <br />
+                </div>
+            </div>
+            
+            
+            <div class="col-md-4">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                @Html.ActionLink("Cancelar", "List", "Employee", new { @class = "btn btn-default" })
+            </div>
+
+        </div>
+
+    }
+</fieldset>

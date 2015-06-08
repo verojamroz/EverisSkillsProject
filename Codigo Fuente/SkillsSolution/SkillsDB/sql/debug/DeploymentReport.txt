@@ -1,0 +1,17 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a compilar
+       Ninguno
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles problemas de datos
+       Ninguno
+
+** Acciones del usuario
+
+** Acciones de compatibilidad
+
+La compatibilidad con vardecimal está habilitada en la base de datos pero deshabilitada en el proyecto. Vea los Libros en pantalla de SQL Server para obtener más información acerca de cómo deshabilitar la compatibilidad con vardecimal.
+Las bases de datos del proyecto y de destino tienen una configuración de intercalación diferente. Se pueden producir errores de implementación.
+

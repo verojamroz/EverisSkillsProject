@@ -1,0 +1,53 @@
+﻿@model Portal.Models.AdminModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<fieldset>
+    
+    <legend>Lista de empleados</legend>
+   
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>DNI</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                @foreach (var item in Model.Employees)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@item.User.UserName</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.DNI</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Email</td>
+                            <td>
+                                @Html.ActionLink("Actualizar", "Update", "Employee", new { id = @item.Id }, new { @class = "btn btn-primary btn-xs" })
+                                @Html.ActionLink("Eliminar", "Delete", "Employee", new { id = @item.Id }, new { @class = "btn btn-primary btn-xs", data_confirmprompt = "Esta seguro de que desea eliminar al empleado " + @item.FirstName + " " + @item.LastName + "?" })
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @Html.ActionLink("Nuevo Empleado", "New", "Employee", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Volver", "Index", "Home", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+</fieldset>

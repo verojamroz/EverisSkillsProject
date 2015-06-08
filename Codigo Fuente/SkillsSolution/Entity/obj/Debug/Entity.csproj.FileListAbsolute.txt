@@ -1,0 +1,4 @@
+D:\Works\Development\Veronica\SkillsSolution\Entity\bin\Debug\Entity.dll
+D:\Works\Development\Veronica\SkillsSolution\Entity\bin\Debug\Entity.pdb
+D:\Works\Development\Veronica\SkillsSolution\Entity\obj\Debug\Entity.dll
+D:\Works\Development\Veronica\SkillsSolution\Entity\obj\Debug\Entity.pdb

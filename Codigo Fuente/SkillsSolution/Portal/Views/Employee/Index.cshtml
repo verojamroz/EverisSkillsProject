@@ -1,0 +1,55 @@
+﻿@model Portal.Models.EmployeeModel
+@{
+    ViewBag.Title = "Employee Role Index";
+}
+
+
+
+<fieldset>
+    <legend> Bienvenido, @Html.ValueFor(m => m.Employee.FirstName)!!</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(m => m.Employee.Id)
+        @Html.HiddenFor(m => m.Employee.FirstName)
+
+        <div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Tecnología</th>
+                        <th>Skill</th>
+                    </tr>
+                </thead>
+                @for (int t = 0; t < Model.Tecnologies.Count(); t++)
+                {
+                    @Html.HiddenFor(m => m.Tecnologies[t].Id)
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.Label(Model.Tecnologies[t].Name)
+                            </td>
+                            <td>
+                                @for (int s = 0; s < Model.Skills.Count(); s++)
+                                {
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.Tecnologies[t].SkillId, Model.Skills[s].Id)
+                                        @Html.ValueFor(m => m.Skills[s].Description)
+                                    </label>
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+
+    <input type="submit" value="Actualizar" class="btn btn-primary" show-confirm />
+    
+
+
+    }
+
+</fieldset>
+
+
+

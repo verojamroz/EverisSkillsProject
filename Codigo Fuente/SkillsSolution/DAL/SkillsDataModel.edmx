@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SkillsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SkillsModelStoreContainer">
+          <EntitySet Name="Employee" EntityType="SkillsModel.Store.Employee" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmployeeSkill" EntityType="SkillsModel.Store.EmployeeSkill" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Skill" EntityType="SkillsModel.Store.Skill" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Technology" EntityType="SkillsModel.Store.Technology" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="SkillsModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Employee_User" Association="SkillsModel.Store.FK_Employee_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeSkill_Employee" Association="SkillsModel.Store.FK_EmployeeSkill_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EmployeeSkill" EntitySet="EmployeeSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeSkill_Skill" Association="SkillsModel.Store.FK_EmployeeSkill_Skill">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="EmployeeSkill" EntitySet="EmployeeSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeSkill_Technology" Association="SkillsModel.Store.FK_EmployeeSkill_Technology">
+            <End Role="Technology" EntitySet="Technology" />
+            <End Role="EmployeeSkill" EntitySet="EmployeeSkill" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DNI" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeSkill">
+          <Key>
+            <PropertyRef Name="IdEmployee" />
+            <PropertyRef Name="IdTechnology" />
+            <PropertyRef Name="IdSkill" />
+          </Key>
+          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="IdTechnology" Type="int" Nullable="false" />
+          <Property Name="IdSkill" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Technology">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Role" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employee_User">
+          <End Role="User" Type="SkillsModel.Store.User" Multiplicity="1" />
+          <End Role="Employee" Type="SkillsModel.Store.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeSkill_Employee">
+          <End Role="Employee" Type="SkillsModel.Store.Employee" Multiplicity="1" />
+          <End Role="EmployeeSkill" Type="SkillsModel.Store.EmployeeSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeSkill">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeSkill_Skill">
+          <End Role="Skill" Type="SkillsModel.Store.Skill" Multiplicity="1" />
+          <End Role="EmployeeSkill" Type="SkillsModel.Store.EmployeeSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeSkill">
+              <PropertyRef Name="IdSkill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeSkill_Technology">
+          <End Role="Technology" Type="SkillsModel.Store.Technology" Multiplicity="1" />
+          <End Role="EmployeeSkill" Type="SkillsModel.Store.EmployeeSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technology">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeSkill">
+              <PropertyRef Name="IdTechnology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SkillsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SkillsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="SkillsModel.Employee" />
+          <EntitySet Name="EmployeeSkills" EntityType="SkillsModel.EmployeeSkill" />
+          <EntitySet Name="Skills" EntityType="SkillsModel.Skill" />
+          <EntitySet Name="Technologies" EntityType="SkillsModel.Technology" />
+          <EntitySet Name="Users" EntityType="SkillsModel.User" />
+          <AssociationSet Name="FK_Employee_User" Association="SkillsModel.FK_Employee_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeSkill_Employee" Association="SkillsModel.FK_EmployeeSkill_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeSkill" EntitySet="EmployeeSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeSkill_Skill" Association="SkillsModel.FK_EmployeeSkill_Skill">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="EmployeeSkill" EntitySet="EmployeeSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeSkill_Technology" Association="SkillsModel.FK_EmployeeSkill_Technology">
+            <End Role="Technology" EntitySet="Technologies" />
+            <End Role="EmployeeSkill" EntitySet="EmployeeSkills" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdUser" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="DNI" Nullable="false" />
+          <Property Type="Int32" Name="Status" Nullable="false" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="SkillsModel.FK_Employee_User" FromRole="Employee" ToRole="User" />
+          <NavigationProperty Name="EmployeeSkills" Relationship="SkillsModel.FK_EmployeeSkill_Employee" FromRole="Employee" ToRole="EmployeeSkill" />
+        </EntityType>
+        <EntityType Name="EmployeeSkill">
+          <Key>
+            <PropertyRef Name="IdEmployee" />
+            <PropertyRef Name="IdTechnology" />
+            <PropertyRef Name="IdSkill" />
+          </Key>
+          <Property Type="Int32" Name="IdEmployee" Nullable="false" />
+          <Property Type="Int32" Name="IdTechnology" Nullable="false" />
+          <Property Type="Int32" Name="IdSkill" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="SkillsModel.FK_EmployeeSkill_Employee" FromRole="EmployeeSkill" ToRole="Employee" />
+          <NavigationProperty Name="Skill" Relationship="SkillsModel.FK_EmployeeSkill_Skill" FromRole="EmployeeSkill" ToRole="Skill" />
+          <NavigationProperty Name="Technology" Relationship="SkillsModel.FK_EmployeeSkill_Technology" FromRole="EmployeeSkill" ToRole="Technology" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmployeeSkills" Relationship="SkillsModel.FK_EmployeeSkill_Skill" FromRole="Skill" ToRole="EmployeeSkill" />
+        </EntityType>
+        <EntityType Name="Technology">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Status" Nullable="false" />
+          <NavigationProperty Name="EmployeeSkills" Relationship="SkillsModel.FK_EmployeeSkill_Technology" FromRole="Technology" ToRole="EmployeeSkill" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Role" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Status" Nullable="false" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="SkillsModel.FK_Employee_User" FromRole="User" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Employee_User">
+          <End Type="SkillsModel.User" Role="User" Multiplicity="1" />
+          <End Type="SkillsModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeSkill_Employee">
+          <End Type="SkillsModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="SkillsModel.EmployeeSkill" Role="EmployeeSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeSkill">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeSkill_Skill">
+          <End Type="SkillsModel.Skill" Role="Skill" Multiplicity="1" />
+          <End Type="SkillsModel.EmployeeSkill" Role="EmployeeSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeSkill">
+              <PropertyRef Name="IdSkill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeSkill_Technology">
+          <End Type="SkillsModel.Technology" Role="Technology" Multiplicity="1" />
+          <End Type="SkillsModel.EmployeeSkill" Role="EmployeeSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technology">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeSkill">
+              <PropertyRef Name="IdTechnology" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SkillsModelStoreContainer" CdmEntityContainer="SkillsEntities">
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="SkillsModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeSkills">
+            <EntityTypeMapping TypeName="SkillsModel.EmployeeSkill">
+              <MappingFragment StoreEntitySet="EmployeeSkill">
+                <ScalarProperty Name="IdSkill" ColumnName="IdSkill" />
+                <ScalarProperty Name="IdTechnology" ColumnName="IdTechnology" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="SkillsModel.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Technologies">
+            <EntityTypeMapping TypeName="SkillsModel.Technology">
+              <MappingFragment StoreEntitySet="Technology">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SkillsModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SkillsDataModel">
+        <EntityTypeShape EntityType="SkillsModel.Employee" Width="1.5" PointX="3" PointY="1" Height="3.1340950520833331" />
+        <EntityTypeShape EntityType="SkillsModel.EmployeeSkill" Width="1.5" PointX="5.25" PointY="1.5" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="SkillsModel.Skill" Width="1.5" PointX="3" PointY="4.875" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="SkillsModel.Technology" Width="1.5" PointX="3" PointY="7.25" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="SkillsModel.User" Width="1.5" PointX="0.75" PointY="1.375" Height="2.3648893229166674" />
+        <AssociationConnector Association="SkillsModel.FK_Employee_User" >
+          <ConnectorPoint PointX="2.25" PointY="2.5574446614583337" />
+          <ConnectorPoint PointX="3" PointY="2.5574446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="SkillsModel.FK_EmployeeSkill_Employee" >
+          <ConnectorPoint PointX="4.5" PointY="2.5862939453125" />
+          <ConnectorPoint PointX="5.25" PointY="2.5862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="SkillsModel.FK_EmployeeSkill_Skill" >
+          <ConnectorPoint PointX="4.5" PointY="5.672841796875" />
+          <ConnectorPoint PointX="5.5104141666666671" PointY="5.6728417968749989" />
+          <ConnectorPoint PointX="5.6770808333333331" PointY="5.672841796875" />
+          <ConnectorPoint PointX="6" PointY="5.672841796875" />
+          <ConnectorPoint PointX="6" PointY="3.6725878906249996" />
+        </AssociationConnector>
+        <AssociationConnector Association="SkillsModel.FK_EmployeeSkill_Technology" >
+          <ConnectorPoint PointX="4.5" PointY="8.2401432291666659" />
+          <ConnectorPoint PointX="5.5937475" PointY="8.2401432291666659" />
+          <ConnectorPoint PointX="5.5937475" PointY="3.6725878906249996" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

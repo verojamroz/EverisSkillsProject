@@ -1,0 +1,44 @@
+﻿@model Portal.Models.TechModel
+@{
+    ViewBag.Title = "Nueva Tecnología";
+}
+<fieldset>
+    <legend>Tecnología</legend>
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.ValidationSummary(true)
+        </div>
+        <div class="col-md-6">
+            <div class="editor-label">
+             @Html.LabelFor(model => model.Technology.Name)
+            </div>
+
+            <div class="editor-field">
+            @Html.TextBoxFor(model => model.Technology.Name, new { @class = "form-control", placeholder = "Nombre" })
+            @Html.ValidationMessageFor(model => model.Technology.Name)
+            </div>
+        </div>
+        <div class="col-md-6">
+           <div class="editor-label">
+            @Html.LabelFor(model => model.Technology.Description)
+           </div>
+           <div class="editor-field">
+            @Html.TextBoxFor(model => model.Technology.Description, new { @class = "form-control", placeholder = "Descripción" })
+            @Html.ValidationMessageFor(model => model.Technology.Description)
+           </div>
+        <br />
+        <br />
+        </div>
+              
+        <div>
+            <div class="col-md-3">
+            <input type="submit" value="Crear" class="btn btn-primary btn-block" />
+            </div>
+            <div class="col-md-3">
+            @Html.ActionLink("Cancelar", "List", "Tech",new {@class = "btn btn-default btn-block" })
+            </div>
+        </div>
+
+    }
+</fieldset>

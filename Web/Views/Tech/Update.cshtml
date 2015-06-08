@@ -1,0 +1,41 @@
+﻿@model Portal.Models.TechModel
+@{
+    ViewBag.Title = "Actualizar Tecnologías";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Technology.Id)
+    <fieldset>
+        <legend>Tecnología</legend>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Technology.Name)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Technology.Name, new { @class = "form-control", placeholder = "Nombre" })
+                    @Html.ValidationMessageFor(model => model.Technology.Name)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Technology.Description)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Technology.Description, new { @class = "form-control", placeholder = "Descripción" })
+                    @Html.ValidationMessageFor(model => model.Technology.Description)
+                </div>
+                <br />
+            </div>
+            <div>
+                @Html.ValidationSummary(true)
+            </div>
+
+            <div class="col-md-4">
+                <input type="submit" name="btnUpdate" value="Actualizar" class="btn btn-primary" />
+                @Html.ActionLink("Cancelar", "List", "Tech", new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </fieldset>
+}

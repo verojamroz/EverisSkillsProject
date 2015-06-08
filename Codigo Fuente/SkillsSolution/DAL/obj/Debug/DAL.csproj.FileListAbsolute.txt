@@ -1,0 +1,12 @@
+D:\Works\Development\Veronica\SkillsSolution\DAL\bin\Debug\DAL.dll.config
+D:\Works\Development\Veronica\SkillsSolution\DAL\bin\Debug\DAL.dll
+D:\Works\Development\Veronica\SkillsSolution\DAL\bin\Debug\DAL.pdb
+D:\Works\Development\Veronica\SkillsSolution\DAL\obj\Debug\DAL.dll
+D:\Works\Development\Veronica\SkillsSolution\DAL\obj\Debug\DAL.pdb
+D:\Works\Development\Veronica\SkillsSolution\DAL\bin\Debug\EntityFramework.dll
+D:\Works\Development\Veronica\SkillsSolution\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Works\Development\Veronica\SkillsSolution\DAL\bin\Debug\EntityFramework.xml
+D:\Works\Development\Veronica\SkillsSolution\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Works\Development\Veronica\SkillsSolution\DAL\bin\Debug\Entity.dll
+D:\Works\Development\Veronica\SkillsSolution\DAL\bin\Debug\Entity.pdb
+D:\Works\Development\Veronica\SkillsSolution\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache

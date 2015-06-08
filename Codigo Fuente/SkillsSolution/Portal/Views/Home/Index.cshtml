@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Home Index";
+    
+}
+<fieldset>
+    <legend>Elija la operación que desea realizar</legend>
+    <div>
+        @Html.ActionLink("Actualizar Empleados", "List", "Employee", null, new { @class = "btn btn-primary btn-lg btn-block" })
+    </div>
+    <br />
+    <div>
+        @Html.ActionLink("Actualizar Tecnologías", "List", "Tech", null, new { @class = "btn btn-primary btn-lg btn-block" })
+    </div>
+</fieldset>
+
